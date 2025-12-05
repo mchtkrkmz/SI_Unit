@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#667eea">
+    <title>🔬 SI Birimleri Macerası</title>
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Splash Screen -->
+        <div id="splash-screen" class="screen active">
+            <div class="splash-content">
+                <div class="logo-animation">
+                    <div class="atom">
+                        <div class="nucleus">🔬</div>
+                        <div class="orbit orbit1"><span>m</span></div>
+                        <div class="orbit orbit2"><span>kg</span></div>
+                        <div class="orbit orbit3"><span>s</span></div>
+                    </div>
+                </div>
+                <h1 class="game-title">SI Birimleri<br>Macerası</h1>
+                <p class="subtitle">7 Temel + Türetilmiş Birimler! 🎓</p>
+                <button id="start-btn" class="btn btn-start pulse">🚀 Başla!</button>
+            </div>
+            <div class="floating-icons">
+                <span class="float-icon" style="--delay: 0s; --x: 10%;">📏</span>
+                <span class="float-icon" style="--delay: 1s; --x: 80%;">⚖️</span>
+                <span class="float-icon" style="--delay: 2s; --x: 20%;">⏱️</span>
+                <span class="float-icon" style="--delay: 0.5s; --x: 70%;">⚡</span>
+                <span class="float-icon" style="--delay: 1.5s; --x: 40%;">🌡️</span>
+                <span class="float-icon" style="--delay: 2.5s; --x: 90%;">🧪</span>
+                <span class="float-icon" style="--delay: 3s; --x: 50%;">💡</span>
+            </div>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="menu-screen" class="screen">
+            <div class="menu-header">
+                <h2>🎮 SI Birimleri</h2>
+                <div class="stars-display">
+                    <span>⭐</span>
+                    <span id="total-stars">0</span>
+                </div>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="base">⚛️ Temel (7)</button>
+                <button class="tab-btn" data-category="derived">🔧 Türetilmiş</button>
+            </div>
+
+            <div class="units-grid" id="units-grid"></div>
+
+            <div class="menu-footer">
+                <button id="quiz-btn" class="btn btn-quiz">🎯 Genel Quiz</button>
+            </div>
+        </div>
+
+        <!-- Learn Screen -->
+        <div id="learn-screen" class="screen">
+            <div class="learn-header">
+                <button class="btn-back" id="learn-back">← Geri</button>
+                <div class="unit-badge" id="learn-badge">m</div>
+            </div>
+            <div class="learn-content">
+                <div class="mascot-container">
+                    <div class="mascot" id="learn-mascot">📏</div>
+                </div>
+                <h2 id="learn-title">Metre</h2>
+                <p class="learn-description" id="learn-description">Uzunluk ölçü birimi</p>
+
+                <div class="learn-card formula-card" id="formula-card">
+                    <h3>📐 Formül</h3>
+                    <p id="learn-formula"></p>
+                </div>
+
+                <div class="learn-card">
+                    <h3>🔍 Ne İşe Yarar?</h3>
+                    <p id="learn-usage"></p>
+                </div>
+
+                <div class="learn-card examples">
+                    <h3>📌 Örnekler</h3>
+                    <div id="learn-examples" class="examples-grid"></div>
+                </div>
+
+                <div class="learn-card fun-fact">
+                    <h3>🎉 Eğlenceli Bilgi</h3>
+                    <p id="learn-fun"></p>
+                </div>
+            </div>
+            <button id="play-unit-btn" class="btn btn-play">🎮 Oyun Oyna!</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <button class="btn-back" id="game-back">✕</button>
+                <div class="game-info">
+                    <span class="game-unit" id="game-unit-badge">m</span>
+                    <span class="game-score">⭐ <span id="game-stars">0</span></span>
+                </div>
+                <div class="game-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="game-progress"></div>
+                    </div>
+                    <span id="game-question-num">1/5</span>
+                </div>
+            </div>
+            <div class="game-content">
+                <div class="question-card">
+                    <div class="question-mascot" id="question-mascot">📏</div>
+                    <h3 id="question-text">Soru...</h3>
+                    <div class="question-image" id="question-image"></div>
+                </div>
+                <div class="answers-container" id="answers-container"></div>
+            </div>
+            <div class="feedback-overlay" id="feedback-overlay">
+                <div class="feedback-content" id="feedback-content">
+                    <div class="feedback-icon">✓</div>
+                    <p class="feedback-text">Doğru!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <button class="btn-back" id="quiz-back">✕</button>
+                <h2>🎯 Genel Quiz</h2>
+                <div class="quiz-score">⭐ <span id="quiz-score">0</span></div>
+            </div>
+            <div class="quiz-content">
+                <div class="quiz-question-card">
+                    <p id="quiz-question">Soru...</p>
+                </div>
+                <div class="quiz-answers" id="quiz-answers"></div>
+            </div>
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="quiz-progress"></div>
+                </div>
+                <span id="quiz-question-num">1/15</span>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="screen">
+            <div class="result-content">
+                <div class="result-stars" id="result-stars">
+                    <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+                </div>
+                <h2 id="result-title">Harika!</h2>
+                <p id="result-message">Çok iyi iş çıkardın!</p>
+                <div class="result-score">
+                    <span class="score-label">Puan:</span>
+                    <span class="score-value" id="result-score-value">0</span>
+                </div>
+                <div class="result-buttons">
+                    <button id="result-retry" class="btn btn-retry">🔄 Tekrar</button>
+                    <button id="result-menu" class="btn btn-menu">🏠 Menü</button>
+                </div>
+            </div>
+            <div class="confetti" id="confetti"></div>
+        </div>
+    </div>
+    <script src="data.js"></script>
+    <script src="game.js"></script>
+</body>
+
+</html>
